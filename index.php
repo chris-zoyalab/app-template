@@ -3,7 +3,7 @@
 if(empty($_GET['locale'])) {
     die();
 }
-
+chdir(__DIR__);
 setlocale(LC_ALL, basename($_GET['locale']));
 //endregion
 
@@ -19,12 +19,14 @@ try {
     $app->bootstrap();
 
 }catch (\Exception $ex){
+    @header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
 
     if($app instanceof App){
         $app->handleException($ex);
     }else{
-        if(class_exists("\\DreamCommerce\\Logger")) {
-            \DreamCommerce\Logger::error($ex);
+        if(class_exists("\\DreamCommerce\\ShopAppstoreLib\\Logger")) {
+            $logger = new \DreamCommerce\ShopAppstoreLib\Logger;
+            $logger->error('Message: ' . $ex->getMessage() . '; code: ' . $ex->getCode() . '; stack trace: ' . $ex->getTraceAsString());
         }else{
             die($ex->getMessage());
         }

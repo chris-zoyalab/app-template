@@ -19,9 +19,11 @@ CREATE TABLE "billings" (
 CREATE TABLE "shops" (
   "id" int(11)  NOT NULL ,
   "created_at" timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  "shop" char(50) DEFAULT NULL,
+  "shop" varchar(128) DEFAULT NULL,
   "shop_url" varchar(512) DEFAULT NULL,
+  "version" int(11) DEFAULT NULL,
   "auth_code" char(50) DEFAULT NULL,
+  "installed" int(1) DEFAULT 0
   PRIMARY KEY ("id")
 );
 CREATE TABLE "subscriptions" (

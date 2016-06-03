@@ -86,9 +86,11 @@ ALTER SEQUENCE billings_id_seq OWNED BY billings.id;
 CREATE TABLE shops (
     id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    shop character(50),
+    shop character varying(128),
     shop_url character varying(512),
-    auth_code character(50)
+    version integer,
+    auth_code character(50),
+    installed boolean DEFAULT FALSE
 );
 
 

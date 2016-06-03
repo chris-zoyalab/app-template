@@ -47,8 +47,10 @@ CREATE TABLE IF NOT EXISTS `billings` (
 CREATE TABLE IF NOT EXISTS `shops` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `shop` char(40) DEFAULT NULL,
+  `shop` varchar(128) DEFAULT NULL,
   `shop_url` varchar(512) DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  `installed` SMALLINT(1) DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `shop` (`shop`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
